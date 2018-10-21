@@ -1,0 +1,245 @@
+import { Appear } from 'mdx-deck';
+import QuoteLayout from './src/quote-layout'
+import Layout from './src/layout';
+import LayoutNoFooter from './src/layout-no-footer';
+import UnitOfWork from './src/unit-of-work';
+import { ImpressionsManager, IncrementImpressions, ImpressionsCounter } from './src/impression-tracker.js';
+
+export { default as theme } from './src/theme'
+
+export default LayoutNoFooter
+
+### Components as
+# Units of Work
+
+---
+
+export default LayoutNoFooter
+
+# Hi, I'm Bryce! 👋
+
+Engineer at Target
+
+@brkalow
+
+---
+
+export default Layout
+
+## Let's talk about components
+
+```notes
+- Create speaker notes in fenced code blocks
+```
+
+---
+
+export default Layout
+
+## Components are...
+
+<ul>
+  <Appear>
+    <li>Declarative</li>
+    <li>Predictable</li>
+    <li>Composable</li>
+    <li>Reusable</li>
+  </Appear>
+</ul>
+
+---
+
+export default Layout
+
+### Components allow us to compose rich user interfaces
+
+```notes
+Usually by visually rendering something
+```
+
+---
+
+export default Layout
+
+## Components also...
+
+<ul>
+  <Appear>
+    <li>Fetch data</li>
+    <li>Add event listeners</li>
+    <li>Handle navigation</li>
+    <li>Manage state</li>
+    <li>Transform data</li>
+    <li>Set timers</li>
+    <li>Control focus</li>
+    <li>Track user interactions</li>
+    <li>Inject scripts</li>
+    <li>Handle scrolling</li>
+  </Appear>
+</ul>
+
+---
+
+export default Layout
+
+## That's a lot 😅
+
+---
+
+export default Layout
+
+### We use the React lifecycle to control the execution flow of our applications
+
+---
+
+export default Layout
+
+## And it works great, except...
+
+---
+
+export default Layout
+
+## As time goes on, our lifecycle methods grow to encapsulate complex logic
+
+```notes
+That might not be related to enabling the component to render
+```
+
+---
+
+export default Layout
+
+## How can we orchestrate execution within the React lifecycle in a maintainable way?
+
+🤔
+
+```notes
+Abstracting lifecycle functionality into separate modules isn't always practical, often times
+we are reliant on props and access to the component tree to do what we need to do.
+```
+
+---
+
+export default Layout
+
+## With components! 🎉
+
+---
+
+export default Layout
+
+## Components don't have to render anything
+
+---
+
+```js
+class UnitOfWork extends Component {
+  render() {
+    return null;
+  }
+}
+```
+
+---
+
+export default Layout
+
+(I just rendered `<UnitOfWork />` 👇)
+
+<UnitOfWork />
+
+---
+
+export default Layout
+
+### What's the big deal?
+
+---
+
+export default Layout
+
+### We can work within the React lifecycle
+
+```notes
+This is crucial for large React applications, as most things are dictated by and revolve around
+the React component tree. Navigation, app state, and configuration are often all orchestrated by
+some piece of React.
+```
+
+---
+
+export default Layout
+
+### With all the benefits of representing UI as components...
+
+<ul>
+  <Appear>
+    <li>Declarative</li>
+    <li>Predictable</li>
+    <li>Composable</li>
+    <li>Reusable</li>
+  </Appear>
+</ul>
+
+---
+
+export default Layout
+
+## Demo
+
+<ImpressionsManager>
+  <span>Home views: <ImpressionsCounter page="home" /></span>
+  <IncrementImpressions page="home" />
+</ImpressionsManager>
+---
+
+export default Layout
+
+## Some ways we use the pattern
+
+* `<ClientVersionCheck />`
+* `<InjectScript />`
+* `<FetchGlobalDataFromService />`
+* `<EventListener />`
+* `<FontLoader />`
+* `<GlobalStyles />`
+* `<ScrollPositionManager />`
+
+---
+
+## In the wild
+
+```notes
+`react-router` uses this pattern quite a bit, the <Redirect /> component is an example of this.
+```
+
+---
+
+export default QuoteLayout
+
+> Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.
+
+— [reactjs.org](https://reactjs.org/docs/components-and-props.html)
+
+
+---
+
+## Also...
+
+---
+
+export default QuoteLayout
+
+> Conceptually, components are like JavaScript functions.
+
+— [reactjs.org](https://reactjs.org/docs/components-and-props.html)
+
+
+```notes
+- Really, really cool JavaScript functions
+```
+
+---
+
+
