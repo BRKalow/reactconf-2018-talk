@@ -13,10 +13,13 @@
   "author": "Brent Jackson",
   "license": "MIT",
   "devDependencies": {
-    "mdx-deck": "1.5.15"
+    "mdx-deck": "1.7.0"
   },
   "name": "reactconf-2018-talk",
   "dependencies": {
+    "mdx-deck-code-surfer": "^0.5.3",
+    "prism-react-renderer": "^0.1.4",
+    "raw-loader": "^0.5.1",
     "styled-components": "^4.0.2",
     "superbox": "^2.1.0"
   }

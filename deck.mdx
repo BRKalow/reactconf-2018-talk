@@ -1,7 +1,11 @@
-import { Appear } from 'mdx-deck';
+import { Appear, Image } from 'mdx-deck';
+import { Split } from 'mdx-deck/layouts';
+import { CodeSurfer } from 'mdx-deck-code-surfer';
+import nightOwl from 'prism-react-renderer/themes/nightOwl';
 import QuoteLayout from './src/quote-layout'
 import Layout from './src/layout';
 import LayoutNoFooter from './src/layout-no-footer';
+import LayoutCenter from './src/layout-center';
 import UnitOfWork from './src/unit-of-work';
 import { ImpressionsManager, IncrementImpressions, ImpressionsCounter } from './src/impression-tracker.js';
 
@@ -9,7 +13,7 @@ export { default as theme } from './src/theme'
 
 export default LayoutNoFooter
 
-### Components as
+## Components as
 # Units of Work
 
 ---
@@ -26,7 +30,7 @@ Engineer at Target
 
 export default Layout
 
-## Let's talk about components
+# Let's talk about components
 
 ```notes
 - Create speaker notes in fenced code blocks
@@ -34,34 +38,18 @@ export default Layout
 
 ---
 
-export default Layout
 
-## Components are...
+export default QuoteLayout
 
-<ul>
-  <Appear>
-    <li>Declarative</li>
-    <li>Predictable</li>
-    <li>Composable</li>
-    <li>Reusable</li>
-  </Appear>
-</ul>
+> Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.
+
+— [reactjs.org](https://reactjs.org/docs/components-and-props.html)
 
 ---
 
 export default Layout
 
-### Components allow us to compose rich user interfaces
-
-```notes
-Usually by visually rendering something
-```
-
----
-
-export default Layout
-
-## Components also...
+## Components also tend to have a lot of other responsibilities...
 
 <ul>
   <Appear>
@@ -80,86 +68,49 @@ export default Layout
 
 ---
 
-export default Layout
-
-## That's a lot 😅
+![](assets/this-is-fine.jpg)
 
 ---
 
 export default Layout
 
-### We use the React lifecycle to control the execution flow of our applications
+## We use the React lifecycle to control the execution flow of our applications in between renders
 
 ---
 
 export default Layout
 
-## And it works great, except...
-
----
-
-export default Layout
-
-## As time goes on, our lifecycle methods grow to encapsulate complex logic
+## How can we orchestrate functionality within the React lifecycle without constructing brittle, hard-to-maintain logic? 🤔
 
 ```notes
-That might not be related to enabling the component to render
+
 ```
+
+---
+
+export default LayoutCenter
+
+# With components!
+
+![](assets/fallon-nice.gif)
 
 ---
 
 export default Layout
 
-## How can we orchestrate execution within the React lifecycle in a maintainable way?
+## Components don't have to _render_ anything
+but they can still _do_ something
 
-🤔
 
 ```notes
-Abstracting lifecycle functionality into separate modules isn't always practical, often times
-we are reliant on props and access to the component tree to do what we need to do.
+Returning null from render is totally valid, you might even be using this pattern already without realizing it.
 ```
 
 ---
 
 export default Layout
 
-## With components! 🎉
-
----
-
-export default Layout
-
-## Components don't have to render anything
-
----
-
-```js
-class UnitOfWork extends Component {
-  render() {
-    return null;
-  }
-}
-```
-
----
-
-export default Layout
-
-(I just rendered `<UnitOfWork />` 👇)
-
-<UnitOfWork />
-
----
-
-export default Layout
-
-### What's the big deal?
-
----
-
-export default Layout
-
-### We can work within the React lifecycle
+### With renderless components, we can continue working within the React lifecycle to control our application, with all the benefits of representing UI as components!
 
 ```notes
 This is crucial for large React applications, as most things are dictated by and revolve around
@@ -169,77 +120,62 @@ some piece of React.
 
 ---
 
-export default Layout
+export default LayoutNoFooter
 
-### With all the benefits of representing UI as components...
+<CodeSurfer
+  title="<ClientVersionCheck>"
+  code={require("!raw-loader!./src/client-version-check.js")}
+  theme={nightOwl}
+  lang="javascript"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { lines: [7,8,9] },
+    { lines: [23,24] },
+    { lines: [28] }
+  ]}
+/>
 
-<ul>
-  <Appear>
-    <li>Declarative</li>
-    <li>Predictable</li>
-    <li>Composable</li>
-    <li>Reusable</li>
-  </Appear>
-</ul>
+---
+
+export default LayoutCenter
+
+# In the wild
 
 ---
 
 export default Layout
 
-## Demo
+# react-router `<Redirect>`
 
-<ImpressionsManager>
-  <span>Home views: <ImpressionsCounter page="home" /></span>
-  <IncrementImpressions page="home" />
-</ImpressionsManager>
----
+```js
+import { Route, Redirect } from 'react-router'
 
-export default Layout
-
-## Some ways we use the pattern
-
-* `<ClientVersionCheck />`
-* `<InjectScript />`
-* `<FetchGlobalDataFromService />`
-* `<EventListener />`
-* `<FontLoader />`
-* `<GlobalStyles />`
-* `<ScrollPositionManager />`
-
----
-
-## In the wild
+<Route exact path="/" render={() => (
+  loggedIn ? (
+    <Redirect to="/dashboard"/>
+  ) : (
+    <PublicHomePage/>
+  )
+)}/>
+```
 
 ```notes
-`react-router` uses this pattern quite a bit, the <Redirect /> component is an example of this.
+`react-router` uses this pattern quite a bit, they have a renderless component in their source called `<Lifecycle>`.
+From: https://reacttraining.com/react-router/web/api/Redirect
 ```
 
 ---
 
-export default QuoteLayout
+export default Layout
 
-> Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.
-
-— [reactjs.org](https://reactjs.org/docs/components-and-props.html)
-
+# Embrace using components beyond presentation
+Think in React
 
 ---
 
-## Also...
+export default Layout
 
----
+# Thanks!
 
-export default QuoteLayout
-
-> Conceptually, components are like JavaScript functions.
-
-— [reactjs.org](https://reactjs.org/docs/components-and-props.html)
-
-
-```notes
-- Really, really cool JavaScript functions
-```
-
----
-
-
+Slides: \<link to slides\>

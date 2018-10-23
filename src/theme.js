@@ -1,5 +1,5 @@
 import { condensed as theme } from 'mdx-deck/themes';
-import codeStyle from 'react-syntax-highlighter/styles/prism/atom-dark';
+import codeStyle from 'react-syntax-highlighter/styles/prism/okaidia';
 
 export default {
   ...theme,
@@ -8,7 +8,6 @@ export default {
     ...theme.colors,
     background: '#011627',
     text: '#e6e9ef'
-    // text: 'white'
   },
   heading: {
     ...theme.heading,
