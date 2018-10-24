@@ -9,14 +9,15 @@ import LayoutCenter from './src/layout-center';
 import UnitOfWork from './src/unit-of-work';
 import Diagram from './src/diagram';
 import TargetLogo from './src/target-logo';
+import { BlockHeader, BorderedText, H2 } from './src/headers';
 import { ImpressionsManager, IncrementImpressions, ImpressionsCounter } from './src/impression-tracker.js';
 
 export { default as theme } from './src/theme'
 
 export default LayoutNoFooter
 
-## Components as
-# Units of Work
+## <BorderedText>Components</BorderedText> as
+<BlockHeader background="#50E3C2" invert>Units of Work</BlockHeader>
 
 ---
 
@@ -119,7 +120,7 @@ but they can still _do_ something
 
 
 ```notes
-Returning null from render is totally valid, you might even be using this pattern already without realizing it.
+Returning null from render is totally valid, you might even be using this pattern without realizing it.
 ```
 
 ---
@@ -140,7 +141,7 @@ export default LayoutCenter
 
 ```notes
 We can take logic spread across mulitple lifecycle methods and put them into components,
-then use them to compose logic just like we do our UI
+then use these components to compose logic, just like we do for our UI
 ```
 
 ---
