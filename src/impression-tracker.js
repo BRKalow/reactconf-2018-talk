@@ -6,7 +6,6 @@ export class ImpressionsManager extends Component {
   state = {};
 
   incrementImpressions = page => {
-    debugger;
     this.setState(prevState => ({
       ...prevState,
       [page]: prevState[page] ? prevState[page] + 1 : 1
