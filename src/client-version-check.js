@@ -21,11 +21,11 @@ class ClientVersionCheck extends PureComponent {
     }
 
     if (this.clientVersion !== currentVersion)
-      this.setState({ shouldRefresh: true });
+      this.shouldRefresh = true;
   }
 
   render() {
-    if (this.state.shouldRefresh) return <Refresh />;
+    if (this.shouldRefresh) return <Refresh />;
 
     return null;
   }

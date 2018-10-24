@@ -7,6 +7,7 @@ import Layout from './src/layout';
 import LayoutNoFooter from './src/layout-no-footer';
 import LayoutCenter from './src/layout-center';
 import UnitOfWork from './src/unit-of-work';
+import Diagram from './src/diagram';
 import { ImpressionsManager, IncrementImpressions, ImpressionsCounter } from './src/impression-tracker.js';
 
 export { default as theme } from './src/theme'
@@ -63,6 +64,7 @@ export default Layout
     <li>Track user interactions</li>
     <li>Inject scripts</li>
     <li>Handle scrolling</li>
+    <div><span style={{ transform: 'rotate(45deg) perspective(0)', display: 'block', position: 'absolute', top: '50%', right: '30%', fontSize: '5em' }}>😅</span></div>
   </Appear>
 </ul>
 
@@ -72,30 +74,26 @@ As our applications grow, our components also evolve to encompass a lot of other
 
 ---
 
-![](assets/this-is-fine.jpg)
+export default Layout
 
+## The React lifecycle controls the execution flow of our applications
 
 ```notes
-Sometimes this is how I feel when I am trying to walk through large, complex lifecycle methods
+We use the React lifecycle to control the execution flow of our applications in between renders
+
+This is crucial for large React applications, as most things are dictated by and revolve around
+the React component tree. Navigation, app state, and configuration are often all orchestrated by
+some piece of React.
 ```
 
 ---
 
 export default Layout
 
-## We use the React lifecycle to control the execution flow of our applications in between renders
+## How can we do this without constructing brittle, hard-to-maintain logic? 🤔
 
 ```notes
-```
-
----
-
-export default Layout
-
-## How can we orchestrate functionality within the React lifecycle without constructing brittle, hard-to-maintain logic? 🤔
-
-```notes
-
+How can we orchestrate functionality within the React lifecycle without constructing brittle, hard-to-maintain logic?
 ```
 
 ---
@@ -122,12 +120,42 @@ Returning null from render is totally valid, you might even be using this patter
 
 export default Layout
 
-### With renderless components, we can continue working within the React lifecycle to control our application, with all the benefits of representing UI as components!
+# Componentize your lifecycle logic
 
 ```notes
-This is crucial for large React applications, as most things are dictated by and revolve around
-the React component tree. Navigation, app state, and configuration are often all orchestrated by
-some piece of React.
+It's another way to organize our code, 
+```
+
+---
+
+export default LayoutCenter
+
+<Diagram />
+
+```notes
+We can take logic spread across mulitple lifecycle methods and put them into components,
+then use them to compose logic just like we do our UI
+```
+
+---
+
+export default Layout
+
+```jsx
+// use keys to trigger execution
+<RetainScrollPosition key={url} />
+```
+
+```jsx
+// declare application flow
+if (!loggedIn) return <Redirect to={loginPage} />;
+```
+
+```notes
+We can do cool things like...
+
+* use keys to trigger execution
+* define how our application should function in a declarative way
 ```
 
 ---
@@ -158,9 +186,9 @@ export default LayoutNoFooter
 
 export default Layout
 
-# react-router `<Redirect>`
+## react-router `<Redirect>`
 
-```js
+```jsx
 import { Route, Redirect } from 'react-router'
 
 <Route exact path="/" render={() => (

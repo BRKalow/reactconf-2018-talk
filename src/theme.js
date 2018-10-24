@@ -9,6 +9,9 @@ export default {
     background: '#011627',
     text: '#e6e9ef'
   },
+  pre: {
+    background: 'red'
+  },
   heading: {
     ...theme.heading,
     textTransform: ''
@@ -27,7 +30,13 @@ export default {
     }
   },
   prism: {
-    style: codeStyle
+    style: {
+      ...codeStyle,
+      'pre[class*="language-"]': {
+        ...codeStyle['pre[class*="language-"]'],
+        background: 'transparent'
+      }
+    }
   }
   // Customize your presentation theme here.
   //
