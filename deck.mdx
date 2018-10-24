@@ -1,7 +1,7 @@
 import { Appear, Image } from 'mdx-deck';
 import { Split } from 'mdx-deck/layouts';
 import { CodeSurfer } from 'mdx-deck-code-surfer';
-import nightOwl from 'prism-react-renderer/themes/nightOwl';
+import codeSurferTheme from './src/monokai-theme';
 import QuoteLayout from './src/quote-layout'
 import Layout from './src/layout';
 import LayoutNoFooter from './src/layout-no-footer';
@@ -70,6 +70,8 @@ export default Layout
 
 ```notes
 As our applications grow, our components also evolve to encompass a lot of other functionality
+
+It can get pretty overwhelming!
 ```
 
 ---
@@ -94,6 +96,9 @@ export default Layout
 
 ```notes
 How can we orchestrate functionality within the React lifecycle without constructing brittle, hard-to-maintain logic?
+
+* Similar logic in DidMount and DidUpdate
+* Think about comparing props in DidUpdate to get that condition exactly right
 ```
 
 ---
@@ -160,18 +165,12 @@ We can do cool things like...
 
 ---
 
-export default LayoutCenter
-
-# In the wild
-
----
-
 export default LayoutNoFooter
 
 <CodeSurfer
   title="<ClientVersionCheck>"
   code={require("!raw-loader!./src/client-version-check.js")}
-  theme={nightOwl}
+  theme={codeSurferTheme}
   lang="javascript"
   showNumbers={false}
   dark={false}
@@ -186,7 +185,7 @@ export default LayoutNoFooter
 
 export default Layout
 
-## react-router `<Redirect>`
+## react-router \<Redirect\>
 
 ```jsx
 import { Route, Redirect } from 'react-router'
