@@ -3,7 +3,7 @@ import codeStyle from 'react-syntax-highlighter/styles/prism/okaidia';
 
 export default {
   ...theme,
-  font: 'Roboto',
+  font: 'Helvetica',
   colors: {
     ...theme.colors,
     background: '#011627',
